@@ -1,7 +1,7 @@
 import {axios} from 'axios';
 
 const apiKey = 'd91f4ea82c832365f288d8ef0385ef11';
-const countryId = 'spain';
+const countryId = 260;
 // const url = `https://api.triathlon.org/v1/athletes?category_id=&gender=&name=&country_id=&elite=&page=&athlete_id=&validated=&per_page=`;
 
 export const getBestAthletes = async () => {

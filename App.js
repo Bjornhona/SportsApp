@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {getBestAthletes} from './src/services';
+
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -60,8 +62,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    const url =
-      'https://api.triathlon.org/v1/athletes?category_id=&gender=&name=&country_id=&elite=&page=&athlete_id=&validated=&per_page=';
+    const getAthletes = async () => {
+      try {
+        const response = await getBestAthletes();
+        console.log(response);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getAthletes();
   }, []);
 
   return (
