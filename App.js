@@ -6,8 +6,8 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
+import React, {useEffect} from 'react';
+// import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -52,12 +52,17 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    const url =
+      'https://api.triathlon.org/v1/athletes?category_id=&gender=&name=&country_id=&elite=&page=&athlete_id=&validated=&per_page=';
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>

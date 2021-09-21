@@ -17,6 +17,13 @@ target 'SportApp' do
     # Pods for testing
   end
 
+  # pod 'React', :path => '../node_modules/react-native', :subspecs => [
+  #   'RCTText',
+  #   'RCTImage',
+  #   'RCTNetwork',
+  #   'RCTWebSocket',
+  # ]
+  
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -25,5 +32,10 @@ target 'SportApp' do
 
   post_install do |installer|
     react_native_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      end
+    end
   end
 end
