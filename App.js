@@ -10,15 +10,25 @@ import React, {useState, useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import AthleteItem from './src/components/AthleteItem';
 
-import {getBestAthletes} from './src/services';
+import {getBestAthletes, getAllCategories} from './src/services';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
   const [athletes, setAthletes] = useState({});
 
-  console.log(athletes);
+  // console.log(categories);
+  // console.log(athletes);
 
   useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const response = await getAllCategories();
+        setCategories(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
     const getAthletes = async () => {
       try {
         const response = await getBestAthletes();
@@ -28,19 +38,27 @@ const App = () => {
         console.error(err);
       }
     };
-    getAthletes();
+
+    Promise.all([getCategories(), getAthletes()]);
   }, []);
 
   return (
     <SafeAreaView>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView>
         <View style={styles}>
           {!loading && (
             <>
               <Text>10 best ranked athletes of Spain</Text>
-              {athletes.map(athlete => (
-                <AthleteItem key={athlete.athlete_id} athlete={athlete} />
-              ))}
+              {athletes &&
+                athletes.map(athlete => (
+                  <AthleteItem
+                    key={athlete.athlete_id}
+                    athlete={athlete}
+                    categories={categories.filter(element =>
+                      athlete.athlete_categories.includes(element.cat_id),
+                    )}
+                  />
+                ))}
             </>
           )}
         </View>
