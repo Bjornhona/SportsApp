@@ -12,9 +12,11 @@ const AthleteSpecifics = ({route}) => {
   const rankingsArr = fullAthleteDetails.current_rankings
     ? Object.entries(fullAthleteDetails.current_rankings)
     : [];
+  const latestResults = fullAthleteDetails.latest_results
+    ? fullAthleteDetails.latest_results
+    : [];
 
-  // console.log(fullAthleteDetails);
-  console.log(rankingsArr);
+  console.log(latestResults);
 
   return (
     <View style={styles.athleteDetail}>
@@ -62,6 +64,16 @@ const AthleteSpecifics = ({route}) => {
           <Image source={{uri: profileImage}} style={styles.profileImage} />
         )}
       </View>
+      <Text style={styles.title}>Latest results</Text>
+      {latestResults &&
+        latestResults.length > 0 &&
+        latestResults.map(result => (
+          <Text>
+            {result.event_title}
+            {', position '}
+            {result.position}
+          </Text>
+        ))}
     </View>
   );
 };
