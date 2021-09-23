@@ -95,8 +95,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   profileImage: {
-    borderWidth: 1,
-    borderColor: '#000000',
     width: 200,
     height: 300,
     resizeMode: 'cover',

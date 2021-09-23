@@ -47,7 +47,7 @@ const AthleteItem = ({athlete, categories}) => {
         })
       }>
       <View style={styles.athleteDescription}>
-        <Text>{athlete.athlete_title}</Text>
+        <Text style={styles.title}>{athlete.athlete_title}</Text>
         <Text>{categories && categoryNames.join(', ')}</Text>
         <Text>
           World ranking:{' '}
@@ -78,6 +78,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 4,
     backgroundColor: '#FFFFFF',
+  },
+  title: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 5,
   },
   profileImage: {
     height: 75,
