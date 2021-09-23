@@ -61,7 +61,9 @@ const Home = () => {
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
               />
-              <Text>10 best ranked athletes of Spain</Text>
+              <Text style={styles.headline}>
+                10 best ranked athletes of Spain
+              </Text>
               {athletes && athletes.length > 0 ? (
                 athletes.map(athlete => (
                   <AthleteItem
@@ -94,6 +96,11 @@ const styles = StyleSheet.create({
   noResponse: {
     padding: 30,
     height: '100%',
+  },
+  headline: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
   },
 });
 
