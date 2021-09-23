@@ -30,7 +30,7 @@ const AthleteSpecifics = ({route}) => {
               categoryNames.length > 0 &&
               categoryNames.join(', ')}
           </Text>
-          {fullAthleteDetails && <Text>Country: {country}</Text>}
+          {country && <Text>Country: {country}</Text>}
 
           {statsArr.length > 0 && (
             <>
@@ -46,31 +46,37 @@ const AthleteSpecifics = ({route}) => {
             </>
           )}
 
-          <Text style={styles.title}>Rankings</Text>
-          {rankingsArr.length > 0 &&
-            rankingsArr.map(ranking => (
-              <Text>
-                {ranking[1].ranking_name}
-                {': '}
-                {ranking[1].ranking}
-              </Text>
-            ))}
+          {rankingsArr.length > 0 && (
+            <>
+              <Text style={styles.title}>Rankings</Text>
+              {rankingsArr.map(ranking => (
+                <Text>
+                  {ranking[1].ranking_name}
+                  {': '}
+                  {ranking[1].ranking}
+                </Text>
+              ))}
+            </>
+          )}
         </View>
 
         {profileImage && profileImage !== '' && profileImage !== {} && (
           <Image source={{uri: profileImage}} style={styles.profileImage} />
         )}
       </View>
-      <Text style={styles.title}>Latest results</Text>
-      {latestResults &&
-        latestResults.length > 0 &&
-        latestResults.map(result => (
-          <Text>
-            {result.event_title}
-            {', position '}
-            {result.position}
-          </Text>
-        ))}
+
+      {latestResults && latestResults.length > 0 && (
+        <>
+          <Text style={styles.title}>Latest results</Text>
+          {latestResults.map(result => (
+            <Text>
+              {result.event_title}
+              {', position '}
+              {result.position}
+            </Text>
+          ))}
+        </>
+      )}
     </View>
   );
 };

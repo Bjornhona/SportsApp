@@ -34,7 +34,7 @@ export const getAllCategories = async () => {
 };
 
 export const getBestAthletes = async () => {
-  const url = `https://api.triathlon.org/v1/athletes?country_id=${countryId}&elite=true&per_page=10`;
+  const url = `https://api.triathlon.org/v1/athletes?country_id=${countryId}&elite=true&per_page=20`;
 
   try {
     const res = await axios.get(url, config);
@@ -46,7 +46,7 @@ export const getBestAthletes = async () => {
 };
 
 export const getBestAthletesByName = async searchInput => {
-  const url = `https://api.triathlon.org/v1/athletes?country_id=${countryId}&elite=true&per_page=10&name=${searchInput}`;
+  const url = `https://api.triathlon.org/v1/athletes?country_id=${countryId}&name=${searchInput}`;
 
   try {
     const res = await axios.get(url, config);

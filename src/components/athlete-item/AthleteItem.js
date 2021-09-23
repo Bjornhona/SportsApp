@@ -49,12 +49,9 @@ const AthleteItem = ({athlete, categories}) => {
       <View style={styles.athleteDescription}>
         <Text style={styles.title}>{athlete.athlete_title}</Text>
         <Text>{categories && categoryNames.join(', ')}</Text>
-        <Text>
-          World ranking:{' '}
-          {!loading &&
-            rankings.world_rankings &&
-            rankings.world_rankings.ranking}
-        </Text>
+        {!loading && rankings.world_rankings && (
+          <Text>World ranking: {rankings.world_rankings.ranking}</Text>
+        )}
       </View>
       {!loading &&
       profileImage &&
