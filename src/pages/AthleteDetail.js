@@ -1,4 +1,3 @@
-import {getOuterBindingIdentifiers} from '@babel/types';
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
@@ -15,8 +14,6 @@ const AthleteSpecifics = ({route}) => {
   const latestResults = fullAthleteDetails.latest_results
     ? fullAthleteDetails.latest_results
     : [];
-
-  console.log(latestResults);
 
   return (
     <View style={styles.athleteDetail}>
