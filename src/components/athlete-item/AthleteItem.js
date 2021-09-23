@@ -7,6 +7,7 @@ const AthleteItem = ({athlete, categories}) => {
   const [loading, setLoading] = useState(true);
   const [profileImage, setProfileImage] = useState('');
   const [rankings, setRankings] = useState({});
+  const [fullAthleteDetails, setFullAthleteDetails] = useState({});
   const categoryNames = categories.map(category => category.cat_name);
   const navigation = useNavigation();
 
@@ -17,6 +18,8 @@ const AthleteItem = ({athlete, categories}) => {
       try {
         const response = await getAthleteInfo(athlete.athlete_id);
         const profileData = response.data ? response.data : {};
+
+        profileData && setFullAthleteDetails(profileData);
 
         profileData.athlete_profile_image &&
           setProfileImage(profileData.athlete_profile_image);
@@ -39,7 +42,7 @@ const AthleteItem = ({athlete, categories}) => {
       style={styles.athleteItem}
       onPress={() =>
         navigation.navigate('AthleteDetail', {
-          athlete: athlete,
+          fullAthleteDetails: fullAthleteDetails,
           categoryNames: categoryNames,
         })
       }>
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   profileImage: {
     height: 75,
     width: 75,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     margin: 5,
   },
   emptyImage: {
