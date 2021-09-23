@@ -101,9 +101,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   profileImage: {
-    width: 200,
-    height: 300,
+    width: 150,
+    height: 200,
     resizeMode: 'cover',
+    borderColor: '#000000',
+    borderWidth: 1,
   },
 });
 
